@@ -83,3 +83,16 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
+
+if 'DYNO' in environ:
+        ON_HEROKU = True
+        APP_NAME = str(getenv('APP_NAME'))
+    
+    else:
+        ON_HEROKU = False
+    FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
+    HAS_SSL=bool(getenv('HAS_SSL',False))
+    if HAS_SSL:
+        URL = "https://primefilesharebot-latestmoviesprime.koyeb.app/"
+    else:
+        URL = "https://primefilesharebot-latestmoviesprime.koyeb.app/"
